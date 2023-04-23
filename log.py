@@ -3,17 +3,16 @@ import datetime
 
 
 def logger(path):
-    paths = ('log_1.log', 'log_2.log', 'log_3.log')
     def __logger(old_function):
         def new_function(*args, **kwargs):
             name_old_function = old_function.__name__
             data_time = datetime.datetime.now()
             args_ = f'{args}, {kwargs}'
             resoult = old_function(*args, **kwargs)
-            with open(path, 'w') as file:
-                file.write(f'function name: {name_old_function},'
-                           f'Function call time: {data_time},'
-                           f'function arguments: {args_},'
+            with open(path, 'a') as file:
+                file.write(f'function name: {name_old_function}, \n'
+                           f'Function call time: {data_time}, \n'
+                           f'function arguments: {args_}, \n'
                            f'call result: {resoult}')
 
             return resoult
